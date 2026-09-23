@@ -229,6 +229,22 @@
     .module{grid-template-columns:32px 1fr;}
   }
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2154321832628954');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2154321832628954&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -334,5 +350,23 @@
   <div class="wrap">© 2026 · Перші $1000 в інтернеті</div>
 </footer>
 
+<script>
+// Meta Pixel: InitiateCheckout при кліку на кнопки "Купити"
+(function(){
+  function onBuy(e){
+    try{ if(window.fbq) fbq('track','InitiateCheckout',{value:399,currency:'UAH',content_name:'Перші $1000 в інтернеті'}); }catch(err){}
+    var a=e.currentTarget;
+    if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.target==='_blank') return;
+    e.preventDefault();
+    var url=a.href, done=false;
+    function go(){ if(done) return; done=true; window.location.href=url; }
+    setTimeout(go,300);
+  }
+  ['buy-btn','buy-btn-2'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.addEventListener('click',onBuy);
+  });
+})();
+</script>
 </body>
 </html>
